@@ -1,0 +1,121 @@
+<section id="main" class="ng-scope">
+  <div class="top-nav">
+    <div class="container-fluid">
+      <div class="row-fluid search-button-bar-container">
+        <div class="span12">
+          <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> F-1 Feeder</a></li>
+                <li><a href="#">Drivers</a></li>
+                <li class="active"><a class="ng-binding">{{driver.Driver.givenName}} {{driver.Driver.familyName}}</a></li>
+              </ul>
+        </div>
+      </div>
+
+      <div class="row-fluid search-bar-nav">
+        <div class="span12">
+          <form class="ng-pristine ng-valid">
+            <input type="text" class="search" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav id="secondary" class="main-nav">
+    <div class="profile-menu">
+
+      <div class="pull-left">
+        <div class="avatar">
+          <img ng-show="driver" src="img/drivers/{{driver.Driver.driverId}}.png" />
+          <img ng-show="!driver" src="images/avatar.png" style="display: none;">
+        </div>
+      </div>
+
+      <div class="pull-left">
+        <div class="title ng-binding">
+          <img ng-show="driver" src="images/flags/German.png">
+          <br>
+          {{driver.Driver.givenName}}<br>{{driver.Driver.familyName}}
+        </div>
+      </div>
+
+      <div class="responsive_cl"></div>
+
+      <div class="pull-left driver-status ng-binding">
+        <strong>Country:</strong>
+        {{driver.Driver.nationality}}    
+        <br>
+
+        <strong>Team:</strong>
+        <a href="#/teams/red_bull" class="ng-binding">{{driver.Constructors[0].name}}</a>
+        <br>
+
+        <strong>Birth:</strong>
+        {{driver.Driver.dateOfBirth}}
+        <br>
+
+        <strong><a href="http://en.wikipedia.org/wiki/Sebastian_Vettel" target="_blank">Biography:<img src="images/external_link.png"></a></strong>
+      </div>
+      <div class="cl"></div>
+    </div>
+
+  </nav>
+
+  <div class="container-fluid main-content">
+    <div class="row-fluid">
+      <div class="span12">
+        <table class="table table-striped table-bordered box list-table result-table">
+          <thead>
+            <tr>
+              <th colspan="5" class="tab-header tb-header-drivers">Formula 1 2013 Results</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Round</td> <td>Grand Prix</td> <td>Team</td> <td>Grid</td> <td>Race</td>
+            </tr>
+            <tr ng-repeat="race in races">
+              <td class="responsive_column"><strong>{{race.round}}</strong></td>
+              <td>
+                <a href="#/races/{{race.round}}"><img src="img/flags/{{race.Circuit.Location.country}}.png">
+                  <span class="hidden-phone ng-binding">{{race.raceName}}</span>
+                  <span class="visible-phone ng-binding">{{race.Circuit.Location}}</span>
+                </a>
+              </td>
+
+              <td>{{race.Results[0].Constructor.name}}</td>
+              <td>{{race.Results[0].grid}}</td>
+              <td>{{race.Results[0].position}}</td>
+
+
+
+
+              
+              </tr>
+            <tr ng-show="races == ''" style="display: none;">
+              <td colspan="5" class="loading_content">
+                <img src="images/ajax-loader.gif">
+              </td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">&nbsp;</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      
+    </div>
+
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="footer">
+          <div>2013 © <a href="#">Raoni Boaventura</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
